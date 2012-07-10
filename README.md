@@ -1,8 +1,6 @@
-# bundle-blog
+# Git Bundles
 ===========
-git bundle example blog post
 
-## Git Bundles
 I very much enjoy working with Git.  After working with CVS and Subversion so many years, 
 Git takes the pains out of using a version control system.  I'm always finding out new things about 
 Git and how flexible it is.  My most recent discover has been with utilizing bundles.  If you are 
