@@ -8,6 +8,7 @@ Our clients utilize servers with restricted access.  Part of our team (me) had a
 To Begin, I read over the tutorial offered by git-scm.com to get some background.  Feeling better about what I was doing, I wanting to get something working, so I jumped right into creating bundles for two repos, going back and forth about If I was including too much or too little in the way of branches, mostly referring to the master and current development branch.   After deciding on branches, I created the bundles and moved those bundles over to the accessible development server.  My next step was to clone two repos from those bundles, one for each developer.  At this point, my setup was the following:  
 * repo1.bundle -> cloned by dev1
 * repo2.bundle -> cloned by dev2
+
 Not too bad.  The first sign of trouble appeared when discovering 'git push' commands failed.  We still had our commits, but just added overhead of then having to create bundles of each developer's workspace and move those commits back up.  But only managing two groups of commits this way, while a bit wonky, was not too painful.  Not yet anyway.  The first real issue cropped up when I needed to contribute to a branch already being worked on.  While the commits were separate, I was looking at having to manually merge two groups of commits which just seemed like a very bad idea.   Now I was staring at: 
 * repo1.bundle -> cloned by dev1
 * repo2.bundle -> cloned by dev1
