@@ -13,12 +13,14 @@ Not too bad.  The first sign of trouble appeared when discovering 'git push' com
 * repo1.bundle -> cloned by dev1
 * repo2.bundle -> cloned by dev1
 * repo2.bundle -> cloned by dev2
+
 Then later that morning, two more developers were being added to do work on another branch,  which duplicated the very issue that really made me question how I was managing the code.  With two more developers, I was now standing with: 
 * repo1.bundle -> cloned by dev1
 * repo2.bundle -> branch-1, cloned by dev1
 * repo2.bundle -> branch-1, cloned by dev2
 * repo2.bundle -> branch-2, cloned by dev3
 * repo2.bundle -> branch-2, cloned by dev4
+
 This made my head hurt thinking about the time it was going to take just to correctly shuttle all the commits back and forth.
 There had to be a better way.  
 
