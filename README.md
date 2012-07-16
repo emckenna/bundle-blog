@@ -20,16 +20,14 @@ Then later that morning, two more developers were being added to do work on anot
 * repo2.bundle -> branch-1, cloned by dev2
 * repo2.bundle -> branch-2, cloned by dev3
 * repo2.bundle -> branch-2, cloned by dev4
-* 
+ 
 This made my head hurt thinking about the time it was going to take just to correctly shuttle all the commits back and forth.
 There had to be a better way.  
 
 ## Then I got it right!
-So after seeing the headache coming with my setup, I started asking others for some insight and we realized that what we really
-needed was just a single clone of each bundle pulled from the restricted code base.  Then, by creating those clones as bare repositories, we were then able to interact with our 'distributed' repository, just like normal.  Now my setup was looking like this:
+So after seeing the headache coming with my setup, I started asking others for some insight and we realized that what we really needed was just a single clone of each bundle pulled from the restricted code base.  Then, by creating those clones as bare repositories, we were then able to interact with our 'distributed' repository, just like normal.  Now my setup was looking like this:
 * repo1.bundle -> cloned-bare -> cloned by dev1
 * repo2.bundle -> cloned-bare -> cloned by dev1, dev2, dev3, dev4
 
-I'll still need to bundle up the changes from these repos and move them back to the restricted space, but that is expected behavior.  I guess the
-lesson to really learn here is that if you are using an established piece of software and your use of it is making your job harder, you are using the tool incorrectly (trust your instincts), or there is something better. ;)
+I'll still need to bundle up the changes from these repos and move them back to the restricted space, but that is expected behavior.  I guess the lesson to really learn here is that if you are using an established piece of software and your use of it is making your job harder, you are using the tool incorrectly (trust your instincts), or there is something better. ;)
 
