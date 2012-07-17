@@ -40,28 +40,29 @@ I'll still need to bundle up the changes from these repos and move them back to 
     git --git-dir=true-origin/.git bundle create tru-orig.bundle example
     // create our bare repository from the initial bundle @@
     git clone --bare /tmp/eric/tru-orig.bundle -b example /tmp/remote/example-bare-clone
-    // our simulated remote environment
+    // change to our simulated remote environment
     cd remote
+    // clone from bare
     git clone example-bare-clone/ example-clone
     cd example-clone
     // edit README.md
     git add README.md
     git commit -m 'a commit to bundle'
+    // push our changes normally
     git push origin example
-
+    // look for our changes
     git log --oneline -5  // to see your commits
-
-    // now we need to package up and move the commits to the true-origin
+    // package up and move the commits to the true-origin
     cd /tmp/remote
     git --git-dir=example-bare-clone bundle create commits.bundle example
 
     // back to our origin repository
     cd /tmp/true-origin
     git pull /tmp/remote/commits.bundle example:example
-
+    // check for commits
     git log --oneline -5 // to see last commits
     git status //shows that we have stuff to push
-
+    // push to true original repository
     git push origin example
 
 @@ if you already cloned, you can set as bare repository with 'git config --bol core.bare true' and then remove all files leaving the .git directory. by you will also need to specifiy the .git folder if using --git-dir option e.g. /tmp/remote/example-bare-clone/.git
