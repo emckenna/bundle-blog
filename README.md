@@ -1,4 +1,4 @@
-# Git Bundles
+h# Git Bundles
 I very much enjoy working with Git.  After working with CVS and Subversion so many years, Git takes the pains out of using a version control system.  I'm always finding out new things about Git and how flexible it is.  My most recent discover has been with utilizing bundles.  If you are not familiar with Git bundles, here is an intro, http://git-scm.com/2010/03/10/bundles.html, but simply put, bundles are a way to package up a set of commits which can then be transferred by any means available, and committed to another repository.
 
 ## Why did I need to use bundles
@@ -31,37 +31,37 @@ So after seeing the headache coming with my setup, I started asking others for s
 
 I'll still need to bundle up the changes from these repos and move them back to the restricted space, but that is expected behavior.  I guess the lesson to really learn here is that if you are using an established piece of software and your use of it is making your job harder, you are using the tool incorrectly (trust your instincts), or there is something better. ;)
 
-find a place to work, i'm going to use /tmp
-cd /tmp
+## Example
+    // find a place to work, i'm going to use /tmp
+    cd /tmp
+    // Clone the repo
+    git clone https://github.com/emckenna/bundle-blog.git -b example true-origin
+    // create the initial bundle
+    git --git-dir=true-origin/.git bundle create tru-orig.bundle example
+    // create our bare repository from the initial bundle @@
+    git clone --bare /tmp/eric/tru-orig.bundle -b example /tmp/remote/example-bare-clone
+    // our simulated remote environment
+    cd remote
+    git clone example-bare-clone/ example-clone
+    cd example-clone
+    // edit README.md
+    git add README.md
+    git commit -m 'a commit to bundle'
+    git push origin example
 
-git clone https://github.com/emckenna/bundle-blog.git -b example true-origin
+    git log --oneline -5  // to see your commits
 
-git --git-dir=true-origin/.git bundle create tru-orig.bundle example
+    // now we need to package up and move the commits to the true-origin
+    cd /tmp/remote
+    git --git-dir=example-bare-clone bundle create commits.bundle example
 
-git clone --bare /tmp/eric/tru-orig.bundle -b example /tmp/remote/example-bare-clone
+    // back to our origin repository
+    cd /tmp/true-origin
+    git pull /tmp/remote/commits.bundle example:example
 
-** if you already cloned, you can set as bare repository with 'git config --bol core.bare true' and then remove all files leaving the .git directory. by you will also need to specifiy the .git folder if using --git-dir option e.g. /tmp/remote/example-bare-clone/.git
-cd remote
-git clone example-bare-clone/ example-clone
-cd example-clone
-edit README.md
-git add README.md
-git commit -m 'a commit to bundle'
-git push origin example
+    git log --oneline -5 // to see last commits
+    git status //shows that we have stuff to push
 
-git log --oneline -5  // to see your commits
+    git push origin example
 
--- now we need to package up and move the commits to the true-origin
-
-cd /tmp/remote
-git --git-dir=example-bare-clone bundle create commits.bundle example
-
-// back to our origin repository
-cd /tmp/true-origin
-git pull /tmp/remote/commits.bundle example:example
-
-git log --oneline -5 // to see last commits
-git status //shows that we have stuff to push
-
-git push origin example
-
+@@ if you already cloned, you can set as bare repository with 'git config --bol core.bare true' and then remove all files leaving the .git directory. by you will also need to specifiy the .git folder if using --git-dir option e.g. /tmp/remote/example-bare-clone/.git
