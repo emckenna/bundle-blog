@@ -31,3 +31,37 @@ So after seeing the headache coming with my setup, I started asking others for s
 
 I'll still need to bundle up the changes from these repos and move them back to the restricted space, but that is expected behavior.  I guess the lesson to really learn here is that if you are using an established piece of software and your use of it is making your job harder, you are using the tool incorrectly (trust your instincts), or there is something better. ;)
 
+find a place to work, i'm going to use /tmp
+cd /tmp
+
+git clone https://github.com/emckenna/bundle-blog.git -b example true-origin
+
+git --git-dir=true-origin/.git bundle create tru-orig.bundle example
+
+git clone --bare /tmp/eric/tru-orig.bundle -b example /tmp/remote/example-bare-clone
+
+** if you already cloned, you can set as bare repository with 'git config --bol core.bare true' and then remove all files leaving the .git directory. by you will also need to specifiy the .git folder if using --git-dir option e.g. /tmp/remote/example-bare-clone/.git
+cd remote
+git clone example-bare-clone/ example-clone
+cd example-clone
+edit README.md
+git add README.md
+git commit -m 'a commit to bundle'
+git push origin example
+
+git log --oneline -5  // to see your commits
+
+-- now we need to package up and move the commits to the true-origin
+
+cd /tmp/remote
+git --git-dir=example-bare-clone bundle create commits.bundle example
+
+// back to our origin repository
+cd /tmp/true-origin
+git pull /tmp/remote/commits.bundle example:example
+
+git log --oneline -5 // to see last commits
+git status //shows that we have stuff to push
+
+git push origin example
+
