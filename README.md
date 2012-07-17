@@ -1,4 +1,4 @@
-h# Git Bundles
+## Git Bundles
 I very much enjoy working with Git.  After working with CVS and Subversion so many years, Git takes the pains out of using a version control system.  I'm always finding out new things about Git and how flexible it is.  My most recent discover has been with utilizing bundles.  If you are not familiar with Git bundles, here is an intro, http://git-scm.com/2010/03/10/bundles.html, but simply put, bundles are a way to package up a set of commits which can then be transferred by any means available, and committed to another repository.
 
 ## Why did I need to use bundles
